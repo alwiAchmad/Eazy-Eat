@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "511777091719",
+    "project_id": "easy-eat-18182",
+    "storage_bucket": "easy-eat-18182.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511777091719:android:1ab5a21ce6fd10f6300822",
+        "android_client_info": {
+          "package_name": "com.example.easy_eat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtmT-YhyLPkYLVDIkphQsYvLJUKneY4oI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
