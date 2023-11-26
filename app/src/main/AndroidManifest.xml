@@ -29,6 +29,7 @@
         <activity android:name=".Dashboard"/>
         <activity android:name=".InputProduk"/>
         <activity android:name=".MilkPage"/>
+        <activity android:name=".CartPage"/>
     </application>
 
 </manifest>

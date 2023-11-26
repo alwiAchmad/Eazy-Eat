@@ -5,6 +5,6 @@ class DatabaseBarang (
     val imgBarangUrl : String,
     val jenis : String,
     val nama : String,
-    val Harga :String,
-    val stok : String
+    val Harga :Int,
+    val stok : Int
 )

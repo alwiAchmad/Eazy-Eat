@@ -98,15 +98,21 @@ class MilkPage : AppCompatActivity() {
 
         val imageUrl = Glide.with(this).load(imgProduk).toString()
         val namaProduk = tvNamaProduk.text.toString()
-        val hargaProduk = tvHargaProduk.text.toString()
+        val hargaProdukString = tvHargaProduk.text.toString()
+
+        val cleanHargaString = hargaProdukString.replace(Regex("[^\\d]"),"")
+
+        val hargaProduk = cleanHargaString.toInt() ?:0
 
         val cartDatabase = CartDatabase(
             id = UUID.randomUUID().toString(),
             imgProdukUrl = imageUrl,
             namaProduk = namaProduk,
-            hargaProduk = hargaProduk.toInt(),
+            hargaProduk = hargaProduk,
             jumlah = 1
         )
+
+        cartAdapter.addItem(cartDatabase)
     }
 
     private fun updateTotalHarga(){

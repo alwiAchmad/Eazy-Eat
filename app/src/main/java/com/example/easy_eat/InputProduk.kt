@@ -72,13 +72,16 @@ class InputProduk : AppCompatActivity() {
     }
 
     private fun getDataProduk(): DatabaseBarang {
+        val harga = etHarga.text.toString()
+        val stok = etStok.text.toString()
+
         return DatabaseBarang(
             id = UUID.randomUUID().toString(),
             imgBarangUrl = btnPickImage.text.toString(),
             jenis = etJenisProduk.text.toString(),
             nama = etNamaproduk.text.toString(),
-            Harga = etHarga.text.toString(),
-            stok = etStok.text.toString()
+            Harga = harga.toInt(),
+            stok = stok.toInt()
         )
     }
 
@@ -87,8 +90,7 @@ class InputProduk : AppCompatActivity() {
 
         if (
             produk.imgBarangUrl.isNotEmpty() &&
-            produk.jenis.isNotEmpty() && produk.nama.isNotEmpty() &&
-            produk.Harga.isNotEmpty() && produk.stok.isNotEmpty()
+            produk.jenis.isNotEmpty() && produk.nama.isNotEmpty()
         ) {
             btInputProduk.isEnabled = false
             auth.getReference("produk").child(produk.id).setValue(produk)

@@ -60,6 +60,11 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/susu" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -119,7 +124,17 @@
             </LinearLayout>
 
 
+
+
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCart"
+            android:contentDescription="ini adalah produk di keranjang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="2"
+            tools:listitem="@layout/list_produk"/>
 
     </LinearLayout>
 
