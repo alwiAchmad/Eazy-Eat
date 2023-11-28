@@ -2,40 +2,43 @@ package com.example.easy_eat
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.util.UUID
 
 class MilkPage : AppCompatActivity() {
 
-    private lateinit var imageView : ImageView
-    private lateinit var tvNamaProduk : TextView
-    private lateinit var tvHargaProduk : TextView
+    private lateinit var imageView: ImageView
+    private lateinit var tvNamaProduk: TextView
+    private lateinit var tvHargaProduk: TextView
     private lateinit var cartAdapter: CartAdapter
+    private var productSnapshot: DataSnapshot? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.milk_page)
 
         FirebaseApp.initializeApp(this)
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
         cartAdapter = CartAdapter()
 
-        imageView  = findViewById(R.id.imageProduk)
+        imageView = findViewById(R.id.imageProduk)
         tvNamaProduk = findViewById(R.id.tvNamaProduk)
-        tvHargaProduk  = findViewById(R.id.tvHargaProduk)
+        tvHargaProduk = findViewById(R.id.tvHargaProduk)
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerViewCart)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -43,18 +46,17 @@ class MilkPage : AppCompatActivity() {
 
         fetchProductDetails()
 
-        val addToCartButton : Button = findViewById(R.id.btAddToCart)
-        addToCartButton.setOnClickListener{
-            //Tambahkan fungsi untuk menambahkan ke keranjang
+        val addToCartButton: Button = findViewById(R.id.btAddToCart)
+        addToCartButton.setOnClickListener {
+            // Tambahkan fungsi untuk menambahkan ke keranjang
             addtoCart()
         }
 
-        val btToCart : ImageButton = findViewById(R.id.btToCart)
-        btToCart.setOnClickListener{
+        val btToCart: ImageButton = findViewById(R.id.btToCart)
+        btToCart.setOnClickListener {
             val intent = Intent(this, CartPage::class.java)
             startActivity(intent)
         }
-
     }
 
     // Metode untuk mengambil dan menampilkan gambar produk
@@ -64,24 +66,28 @@ class MilkPage : AppCompatActivity() {
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Hanya mengambil gambar dari satu produk (silakan sesuaikan dengan kebutuhan)
-                val productSnapshot = dataSnapshot.children.firstOrNull()
+                productSnapshot = dataSnapshot.children.firstOrNull()
                 if (productSnapshot != null) {
-                    val imageUrl = productSnapshot.child("imgBarangUrl").value.toString()
-                    val namaProduk = productSnapshot.child("nama").value.toString()
-                    val hargaProduk = productSnapshot.child("harga").value.toString()
+                    val imageUrl = productSnapshot!!.child("imgBarangUrl").value?.toString() ?: ""
+                    val namaProduk = productSnapshot!!.child("nama").value?.toString() ?: ""
+                    val hargaProduk = productSnapshot!!.child("harga").value?.toString() ?: ""
 
-                    // Gunakan UI yang diberikan
-                    displayProductImage(imageUrl, namaProduk, hargaProduk)
+                    if (imageUrl.isNotBlank() && namaProduk.isNotBlank() && hargaProduk.isNotBlank()) {
+                        // Gunakan UI yang diberikan
+                        displayProductImage(imageUrl, namaProduk, hargaProduk)
 
-                    //Menambahkan produk ke keranjang
-                    val cartDatabase = CartDatabase(
-                        id = productSnapshot.key.toString(),
-                        imgProdukUrl = imageUrl,
-                        namaProduk = namaProduk,
-                        hargaProduk = hargaProduk.toInt(),
-                        jumlah = 1
-                    )
-                    cartAdapter.addItem(cartDatabase)
+                        // Menambahkan produk ke keranjang
+                        val cartDatabase = CartDatabase(
+                            id = productSnapshot!!.key.toString(),
+                            imgProdukUrl = imageUrl,
+                            namaProduk = namaProduk,
+                            hargaProduk = hargaProduk.toInt(),
+                            jumlah = 1
+                        )
+                        cartAdapter.addItem(cartDatabase)
+                    } else {
+                        Log.e("MilkPage", "Nilai imageUrl, namaProduk, atau hargaProduk null atau blank.")
+                    }
                 }
             }
 
@@ -91,31 +97,46 @@ class MilkPage : AppCompatActivity() {
         })
     }
 
-    private fun addtoCart(){
-        val imgProduk: ImageView = findViewById(R.id.imageProduk)
-        val tvNamaProduk: TextView = findViewById(R.id.tvNamaProduk)
-        val tvHargaProduk: TextView = findViewById(R.id.tvHargaProduk)
+    private fun addtoCart() {
+        val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("cart")
 
-        val imageUrl = Glide.with(this).load(imgProduk).toString()
-        val namaProduk = tvNamaProduk.text.toString()
-        val hargaProdukString = tvHargaProduk.text.toString()
+        if (productSnapshot != null) {
+            val imgProdukUrlSnapshot = productSnapshot!!.child("imgBarangUrl")
+            val imageUrl = imgProdukUrlSnapshot.value?.toString() ?: ""
+            val namaProduk = tvNamaProduk.text.toString()
+            val hargaProdukString = tvHargaProduk.text.toString()
 
-        val cleanHargaString = hargaProdukString.replace(Regex("[^\\d]"),"")
+            if (imageUrl.isNotBlank() && namaProduk.isNotBlank() && hargaProdukString.isNotBlank()) {
+                val cleanHargaString = hargaProdukString.replace(Regex("[^\\d]"), "")
+                val hargaProduk = cleanHargaString.toInt()
 
-        val hargaProduk = cleanHargaString.toInt() ?:0
+                // Untuk melakukan cek apakah produk sudah ada di keranjang
+                val existingItem = cartAdapter.getItems().find { it.id == productSnapshot!!.key.toString() }
 
-        val cartDatabase = CartDatabase(
-            id = UUID.randomUUID().toString(),
-            imgProdukUrl = imageUrl,
-            namaProduk = namaProduk,
-            hargaProduk = hargaProduk,
-            jumlah = 1
-        )
+                if (existingItem != null) {
+                    cartAdapter.incrementJumlahproduk(cartAdapter.indexOf(existingItem))
+                } else {
+                    val cartDatabase = CartDatabase(
+                        id = UUID.randomUUID().toString(),
+                        imgProdukUrl = imageUrl,
+                        namaProduk = namaProduk,
+                        hargaProduk = hargaProduk,
+                        jumlah = 1
+                    )
+                    cartAdapter.addItem(cartDatabase)
 
-        cartAdapter.addItem(cartDatabase)
+                    val cartItemReference: DatabaseReference = databaseReference.push()
+                    cartItemReference.setValue(cartDatabase)
+                }
+            } else {
+                Log.e("MilkPage", "Nilai imageUrl, namaProduk, atau hargaProduk null atau blank.")
+            }
+        } else {
+            Log.e("MilkPage", "Product snapshot belum diinisialisasi.")
+        }
     }
 
-    private fun updateTotalHarga(){
+    private fun updateTotalHarga() {
         val totalHarga = cartAdapter.calculateTotalHarga()
     }
 

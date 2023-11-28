@@ -1,7 +1,6 @@
 package com.example.easy_eat
 
 import android.os.Bundle
-import android.view.View.OnCreateContextMenuListener
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,14 +15,14 @@ import com.google.firebase.database.ValueEventListener
 
 class CartPage : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var cartAdapter : CartAdapter
+    private lateinit var cartAdapter: CartAdapter
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
     private lateinit var totalHargaTextView: TextView
     private lateinit var checkButton: Button
 
-    override fun onCreate(savedInstanceState: Bundle?){
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cart_page)
 
@@ -42,36 +41,69 @@ class CartPage : AppCompatActivity() {
 
         fetchCartItems()
 
-        checkButton.setOnClickListener{
-            //implementasikan logika checkout
+        checkButton.setOnClickListener {
+            // Implementasikan logika checkout
         }
+
+        cartAdapter.setOnAddProdukClickListener(object : CartAdapter.OnAddProdukClickListener {
+            override fun onAddProdukClick(position: Int) {
+                onAddProdukclick(position)
+            }
+        })
+
+        cartAdapter.setOnMinusProdukClickListener(object : CartAdapter.OnMinusProdukClickListener {
+            override fun onMinusProdukClick(position: Int) {
+                onMinusProdukclick(position)
+            }
+        })
     }
 
-    private fun fetchCartItems(){
-        databaseReference.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(dataSnapshot: DataSnapshot){
+    private fun updateTotalHarga() {
+        val totalHarga = cartAdapter.calculateTotalHarga()
+        totalHargaTextView.text = "Rp.$totalHarga,00"
+    }
+
+    private fun onAddProdukclick(position: Int) {
+        cartAdapter.incrementJumlahproduk(position)
+        updateTotalHarga()
+    }
+
+    private fun onMinusProdukclick(position: Int) {
+        cartAdapter.decrementJumlahProduk(position)
+        updateTotalHarga()
+    }
+
+    private fun fetchCartItems() {
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val cartItems = mutableListOf<CartDatabase>()
-                for(itemSnapshot in dataSnapshot.children){
+                for (itemSnapshot in dataSnapshot.children) {
                     val cartItem = itemSnapshot.getValue(CartDatabase::class.java)
-                    cartItem?.let { cartItems.add(it) }
+                    cartItem?.let {
+                        val existingItem = cartItems.find { existingItem -> existingItem.id == it.id }
+                        if (existingItem != null) {
+                            it.jumlah = existingItem.jumlah
+                        }
+                        cartItems.add(it)
+                    }
                 }
                 cartAdapter.setItems(cartItems)
 
                 val totalHarga = calculateTotalharga(cartItems)
                 totalHargaTextView.text = "Rp.$totalHarga,00"
             }
-            override fun onCancelled(databaseError: DatabaseError){
-                //Handle eror
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle error
             }
         })
     }
 
-    private fun calculateTotalharga(items: List<CartDatabase>):Int{
+    private fun calculateTotalharga(items: List<CartDatabase>): Int {
         var totalHarga = 0
-        for(item in items){
+        for (item in items) {
             totalHarga += item.hargaProduk * item.jumlah
         }
         return totalHarga
     }
-
 }
