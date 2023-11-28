@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -24,6 +25,7 @@ class MilkPage : AppCompatActivity() {
     private lateinit var imageView: ImageView
     private lateinit var tvNamaProduk: TextView
     private lateinit var tvHargaProduk: TextView
+    private lateinit var recyclerView: RecyclerView
     private lateinit var cartAdapter: CartAdapter
     private var productSnapshot: DataSnapshot? = null
 
@@ -31,10 +33,17 @@ class MilkPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.milk_page)
 
+        recyclerView = findViewById(R.id.recyclerViewCart)
+
         FirebaseApp.initializeApp(this)
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
-        cartAdapter = CartAdapter()
+        val auth = FirebaseAuth.getInstance()
+        val userID = auth.currentUser?.uid
+        val databaseReference = FirebaseDatabase.getInstance().getReference("milk")
+
+        val cartDao = FirebaseCartDao(userID)
+        cartAdapter = CartAdapter(cartDao)
 
         imageView = findViewById(R.id.imageProduk)
         tvNamaProduk = findViewById(R.id.tvNamaProduk)

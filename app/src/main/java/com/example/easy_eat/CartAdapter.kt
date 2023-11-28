@@ -1,5 +1,6 @@
 package com.example.easy_eat
 
+import android.provider.Settings.Global
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-
-class CartAdapter : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+class CartAdapter(private val cartDao : CartDao) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
     private var cartItems: MutableList<CartDatabase> = mutableListOf()
     private var onAddProdukClickListener: OnAddProdukClickListener? = null
     private var onMinusProdukClickListener: OnMinusProdukClickListener? = null
+
+    interface CartDao {
+        fun updateItem(item: CartDatabase)
+        fun deleteItem(item: CartDatabase)
+    }
+
 
     interface OnAddProdukClickListener {
         fun onAddProdukClick(position: Int)
@@ -23,9 +32,23 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
         fun onMinusProdukClick(position: Int)
     }
 
+
+    private fun updateItemInDatabase(item: CartDatabase){
+        GlobalScope.launch(Dispatchers.IO) {
+            cartDao.updateItem(item)
+        }
+    }
+
+    private fun removeItemFromDatabase(item: CartDatabase){
+        GlobalScope.launch(Dispatchers.IO) {
+            cartDao.deleteItem(item)
+        }
+    }
+
     fun setOnAddProdukClickListener(listener: OnAddProdukClickListener) {
         this.onAddProdukClickListener = listener
     }
+
 
     fun setOnMinusProdukClickListener(listener: OnMinusProdukClickListener) {
         this.onMinusProdukClickListener = listener
@@ -39,6 +62,7 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     fun incrementJumlahproduk(position: Int) {
         val item = cartItems[position]
         item.jumlah++
+        updateItemInDatabase(item)
         notifyItemChanged(position)
     }
 
@@ -46,8 +70,10 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
         val item = cartItems[position]
         if (item.jumlah > 1) {
             item.jumlah--
+            updateItemInDatabase(item)
             notifyItemChanged(position)
         } else {
+            removeItemFromDatabase(item)
             cartItems.removeAt(position)
             notifyItemRemoved(position)
         }

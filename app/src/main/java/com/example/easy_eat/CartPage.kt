@@ -1,7 +1,9 @@
 package com.example.easy_eat
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+
 
 class CartPage : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -33,16 +36,24 @@ class CartPage : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         auth = FirebaseAuth.getInstance()
-        val userID = auth.currentUser?.uid
         databaseReference = FirebaseDatabase.getInstance().getReference("cart")
+        val userID = auth.currentUser?.uid
 
-        cartAdapter = CartAdapter()
+        val cartDao = FirebaseCartDao(userID)
+        cartAdapter = CartAdapter(cartDao)
         recyclerView.adapter = cartAdapter
 
         fetchCartItems()
 
         checkButton.setOnClickListener {
             // Implementasikan logika checkout
+        }
+
+        val btBack = findViewById<ImageButton>(R.id.btBack)
+
+        btBack.setOnClickListener {
+            val intent = Intent(this, MilkPage::class.java)
+            startActivity(intent)
         }
 
         cartAdapter.setOnAddProdukClickListener(object : CartAdapter.OnAddProdukClickListener {
