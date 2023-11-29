@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     // Login berhasil
                     Toast.makeText(this, "Login berhasil", Toast.LENGTH_SHORT).show()
                     // Tambahan: Pindah ke halaman utama aplikasi setelah login
-                    val intent = Intent(this, MilkPage::class.java)
+                    val intent = Intent(this, Dashboard::class.java)
                     startActivity(intent)
                     finish()
                 } else {

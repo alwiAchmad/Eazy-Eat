@@ -68,7 +68,7 @@ class CartAdapter(private val cartDao : CartDao) : RecyclerView.Adapter<CartAdap
 
     fun decrementJumlahProduk(position: Int) {
         val item = cartItems[position]
-        if (item.jumlah > 1) {
+        if (item.jumlah > 0) {
             item.jumlah--
             updateItemInDatabase(item)
             notifyItemChanged(position)
@@ -89,6 +89,9 @@ class CartAdapter(private val cartDao : CartDao) : RecyclerView.Adapter<CartAdap
 
     fun getItems(): List<CartDatabase> {
         return cartItems
+    }
+    fun getItem(position: Int): CartDatabase{
+        return cartItems[position]
     }
 
     fun indexOf(item: CartDatabase): Int {

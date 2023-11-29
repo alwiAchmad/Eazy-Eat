@@ -33,10 +33,11 @@ class MilkPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.milk_page)
 
-        recyclerView = findViewById(R.id.recyclerViewCart)
-
         FirebaseApp.initializeApp(this)
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+
+        recyclerView = findViewById(R.id.recyclerViewCart)
+
 
         val auth = FirebaseAuth.getInstance()
         val userID = auth.currentUser?.uid
@@ -64,6 +65,12 @@ class MilkPage : AppCompatActivity() {
         val btToCart: ImageButton = findViewById(R.id.btToCart)
         btToCart.setOnClickListener {
             val intent = Intent(this, CartPage::class.java)
+            startActivity(intent)
+        }
+
+        val btBack: ImageButton = findViewById(R.id.btToDashboard)
+        btBack.setOnClickListener {
+            val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
         }
     }

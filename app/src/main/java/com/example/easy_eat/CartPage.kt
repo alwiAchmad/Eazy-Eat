@@ -2,9 +2,11 @@ package com.example.easy_eat
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +40,7 @@ class CartPage : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().getReference("cart")
         val userID = auth.currentUser?.uid
+
 
         val cartDao = FirebaseCartDao(userID)
         cartAdapter = CartAdapter(cartDao)
@@ -80,8 +83,25 @@ class CartPage : AppCompatActivity() {
     }
 
     private fun onMinusProdukclick(position: Int) {
+        val item = cartAdapter.getItem(position)
         cartAdapter.decrementJumlahProduk(position)
         updateTotalHarga()
+
+        if (item.jumlah == 0){
+            hapusProdukDariCart(item.id)
+        }
+    }
+    private fun hapusProdukDariCart(itemId: String) {
+        databaseReference.child(itemId).removeValue().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(this, "Produk berhasil dihapus", Toast.LENGTH_SHORT).show()
+
+                // Update tampilan setelah menghapus produk dari database
+                fetchCartItems()
+            } else {
+                Toast.makeText(this, "Produk gagal dihapus", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun fetchCartItems() {
