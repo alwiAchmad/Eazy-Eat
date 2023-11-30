@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var lgEmail: EditText
     private lateinit var lgPassword: EditText
-    private lateinit var lgLogin: Button
+    private lateinit var lgLogin: ImageButton
 
     private lateinit var firebaseAuth: FirebaseAuth
 
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             loginUser()
         }
 
-        val lgRegister = findViewById<Button>(R.id.lgRegister)
+        val lgRegister = findViewById<ImageButton>(R.id.lgRegister)
 
         lgRegister.setOnClickListener {
             val intent = Intent(this, Register::class.java)
