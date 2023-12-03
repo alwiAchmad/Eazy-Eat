@@ -16,7 +16,7 @@ class LoginPage : AppCompatActivity() {
 
     private lateinit var lgEmail: EditText
     private lateinit var lgPassword: EditText
-    private lateinit var lgLogin: ImageButton
+    private lateinit var lgLogin: Button
 
     private lateinit var firebaseAuth: FirebaseAuth
 

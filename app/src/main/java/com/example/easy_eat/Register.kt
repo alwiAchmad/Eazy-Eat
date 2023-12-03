@@ -6,16 +6,17 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import java.util.UUID
 
 class Register : AppCompatActivity() {
-    private lateinit var etName: EditText
+//    private lateinit var etName: EditText
     private lateinit var etUsername: EditText
     private lateinit var etEmail: EditText
-    private lateinit var etNumCall: EditText
+//    private lateinit var etNumCall: EditText
     private lateinit var etPassword: EditText
     private lateinit var etConfirmPass: EditText
 
@@ -35,19 +36,19 @@ class Register : AppCompatActivity() {
             }
         }
 
-        val toLogin = findViewById<Button>(R.id.toLogin)
+        val toLogin = findViewById<TextView>(R.id.toLogin)
 
         toLogin.setOnClickListener {
-            val intent = Intent(this, Dashboard::class.java)
+            val intent = Intent(this, LoginPage::class.java)
             startActivity(intent)
         }
     }
 
     private fun inisialisasiView() {
-        etName = findViewById(R.id.etName)
+//        etName = findViewById(R.id.etName)
         etUsername = findViewById(R.id.etUsername)
         etEmail = findViewById(R.id.etEmail)
-        etNumCall = findViewById(R.id.etCallNum)
+//        etNumCall = findViewById(R.id.etCallNum)
         etPassword = findViewById(R.id.etPassword)
         etConfirmPass = findViewById(R.id.etConfirmPass)
 
@@ -58,9 +59,9 @@ class Register : AppCompatActivity() {
         return Pengguna(
             id = UUID.randomUUID().toString(),
             username = etUsername.text.toString(),
-            NamaLengkap = etName.text.toString().trim(),
+//            NamaLengkap = etName.text.toString().trim(),
             Email = etEmail.text.toString(),
-            NoTelp = etNumCall.text.toString(),
+//            NoTelp = etNumCall.text.toString(),
             Password = etPassword.text.toString(),
             KonfirmPass = etConfirmPass.text.toString()
         )
@@ -69,8 +70,8 @@ class Register : AppCompatActivity() {
     private fun registerUser() {
         val pengguna = getDataPengguna()
 
-        if (pengguna.NamaLengkap.isNotEmpty() && pengguna.username.isNotEmpty() && pengguna.Email.isNotEmpty() &&
-            pengguna.NoTelp.isNotEmpty() && pengguna.Password.isNotEmpty() && pengguna.KonfirmPass.isNotEmpty()
+        if (pengguna.username.isNotEmpty() && pengguna.Email.isNotEmpty() &&
+            pengguna.Password.isNotEmpty() && pengguna.KonfirmPass.isNotEmpty()
         ) {
             svRegister.isEnabled = false
 
@@ -80,26 +81,30 @@ class Register : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Pengguna berhasil dibuat
                         etUsername.setText("")
-                        etName.setText("")
+//                        etName.setText("")
                         etEmail.setText("")
-                        etNumCall.setText("")
+//                        etNumCall.setText("")
                         etPassword.setText("")
                         etConfirmPass.setText("")
-                        etConfirmPass != etPassword
+                        etConfirmPass == etPassword
 
                         svRegister.isEnabled = true
 
                         Toast.makeText(this, "Registrasi berhasil", Toast.LENGTH_SHORT).show()
                     } else {
-                        // Registrasi gagal
-                        svRegister.isEnabled = true
-                        Toast.makeText(this, "Registrasi gagal: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        if (etConfirmPass != etPassword){
+                            Toast.makeText(this, "Password harus sama",Toast.LENGTH_SHORT).show()
+                        }else{
+                            // Registrasi gagal
+                            svRegister.isEnabled = true
+                            Toast.makeText(this, "Registrasi gagal: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
         }
         val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         // Menyembunyikan Keyboard
-        imm.hideSoftInputFromWindow(etName.windowToken, 0)
+        imm.hideSoftInputFromWindow(etUsername.windowToken, 0)
     }
 }

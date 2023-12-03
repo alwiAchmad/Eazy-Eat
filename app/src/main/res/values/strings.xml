@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Easy-Eat</string>
+    <string name="google_map_api_key">AIzaSyCNuAd_ICazu9toQtoZcl6I9xsp_y_6zio</string>
 </resources>

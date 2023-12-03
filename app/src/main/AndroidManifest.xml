@@ -10,12 +10,17 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_fix"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyEat"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map_api_key"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -31,6 +36,7 @@
         <activity android:name=".InputProduk"/>
         <activity android:name=".MilkPage"/>
         <activity android:name=".CartPage"/>
+        <activity android:name=".LoginPage"/>
     </application>
 
 </manifest>

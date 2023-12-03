@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mapView"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="150dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingHorizontal="20dp"
+        android:layout_height="250dp"
+        android:background="@drawable/upper_rounded_border"
+        app:layout_constraintBottom_toBottomOf="@+id/mapView"
+        app:layout_constraintTop_toTopOf="@+id/mapView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fill_location"
+                app:cardElevation = "8dp"
+                app:cardCornerRadius="4dp"
+                android:textSize="13dp"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingHorizontal="50dp"
+                android:text="Pilih lokasi anda"/>
+        </androidx.cardview.widget.CardView>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/rounded_border_10dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                >
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/alert"
+                    android:layout_marginLeft="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="13dp"
+                    android:layout_gravity="center_horizontal||center_vertical"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Pengantar akan mengantarkan pesananmu sesuai lokasi yang kamu tandain."/>
+
+            </LinearLayout>
+
+        <Button
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:textSize="20dp"
+            android:backgroundTint="@color/mainColor"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:text="Konfirmasi"/>
+
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
