@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:textSize="13dp"
-                    android:layout_gravity="center_horizontal||center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Pengantar akan mengantarkan pesananmu sesuai lokasi yang kamu tandain."/>
 

@@ -1,109 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
 
+    <ImageView
+        android:layout_width="465dp"
+        android:layout_height="164dp"
+        android:src="@drawable/bg_dashboard"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-27dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/rounded_border">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:background="@drawable/rounded_border"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="250dp">-->
 
 
-        <ImageButton
-            android:id="@+id/imageView2"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@drawable/rounded_border"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/profile"/>
+<!--        <ImageButton-->
+<!--            android:id="@+id/imageView2"-->
+<!--            android:layout_width="35dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:background="@drawable/rounded_border"-->
+<!--            android:src="@drawable/profile" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="250dp"
-            android:text="Username"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginLeft="2dp"-->
+<!--            android:layout_marginRight="250dp"-->
+<!--            android:text="Username"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textStyle="bold" />-->
 
-        <ImageButton
-            android:id="@+id/btSetting"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/setting"/>
-    </LinearLayout>
+<!--        <ImageButton-->
+<!--            android:id="@+id/btSetting"-->
+<!--            android:layout_width="35dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:background="@drawable/setting" />-->
+<!--    </LinearLayout>-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        tools:layout_editor_absoluteX="-16dp"-->
+<!--        tools:layout_editor_absoluteY="387dp">-->
 
-        <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/location"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"/>
+<!--        <ImageButton-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:background="@drawable/location" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yogyakarta, Indonesia"
-            android:textSize="8sp"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="center_vertical"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:text="Yogyakarta, Indonesia"-->
+<!--            android:textSize="8sp" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:hint="Cari Kebutuhanmu di EazyEat"
+        android:paddingBottom="6dp"
+        android:textSize="12dp"
+        android:fontFamily="@font/poppins_regular"
+        android:paddingLeft="37dp"
+        android:background="@drawable/search_bar"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="164dp" />
 
     <LinearLayout
         android:layout_width="280dp"
         android:layout_height="140dp"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/border_shadow">
+        android:background="@drawable/border_shadow"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="451dp">
 
         <ImageButton
             android:id="@+id/btSusu"
             android:layout_width="50dp"
             android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/susu"
-            android:layout_gravity="center_vertical"/>
+            android:background="@drawable/susu" />
 
         <ImageButton
             android:id="@+id/btSayur"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="12dp"
-            android:background="@drawable/sayuran"
-            android:layout_gravity="center_vertical"/>
+            android:background="@drawable/sayuran" />
 
         <ImageButton
             android:id="@+id/btSnack"
             android:layout_width="50dp"
             android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/snack"
-            android:layout_gravity="center_vertical"/>
+            android:background="@drawable/snack" />
 
         <ImageButton
             android:id="@+id/btBuah"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/buah"
-            android:layout_gravity="center_vertical"/>
+            android:background="@drawable/buah" />
 
     </LinearLayout>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
