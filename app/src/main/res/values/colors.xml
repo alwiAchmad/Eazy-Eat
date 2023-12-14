@@ -6,4 +6,5 @@
     <color name="mainColor">#007965</color>
     <color name="transparent">#80FFFFFF</color>
     <color name="semi_grey">#E6E6E6</color>
+    <color name="grey">#999999</color>
 </resources>
