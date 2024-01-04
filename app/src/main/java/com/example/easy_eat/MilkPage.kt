@@ -56,7 +56,7 @@ class MilkPage : AppCompatActivity() {
 
         fetchProductDetails()
 
-        val addToCartButton: ImageButton = findViewById(R.id.btAddToCart)
+        val addToCartButton: Button = findViewById(R.id.btAddToCart)
         addToCartButton.setOnClickListener {
             // Tambahkan fungsi untuk menambahkan ke keranjang
             addtoCart()

@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="458dp"
-        android:layout_height="183dp"
+        android:layout_width="502dp"
+        android:layout_height="222dp"
         android:layout_marginTop="4dp"
         android:src="@drawable/bg_dashboard"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,16 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Promo Terbatas Hanya di App"
-        android:textSize="12dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="687dp" />
-
     <!--    <LinearLayout-->
     <!--        android:paddingHorizontal="8dp"-->
     <!--        android:layout_width="match_parent"-->
@@ -64,16 +54,28 @@
     <!--        tools:layout_editor_absoluteY="348dp"-->
     <!--        android:orientation="">-->
 
+<!--    <TextView-->
+<!--        android:id="@+id/textView5"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/poppins_medium"-->
+<!--        android:text="Promo Terbatas Hanya di App"-->
+<!--        android:textSize="12dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.029"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        tools:layout_editor_absoluteY="705dp" />-->
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Produk Sesuai Kategori"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
@@ -81,8 +83,8 @@
         android:id="@+id/linearLayout9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
@@ -107,9 +109,10 @@
         android:id="@+id/linearLayout11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout8"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toEndOf="@+id/linearLayout9"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
@@ -137,8 +140,8 @@
         android:id="@+id/linearLayout8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
@@ -166,12 +169,13 @@
         android:id="@+id/linearLayout10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
-        app:layout_constraintVertical_bias="0.467">
+        app:layout_constraintVertical_bias="0.132">
 
         <ImageButton
             android:id="@+id/btSnack"
@@ -196,6 +200,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:layout_editor_absoluteX="0dp">
@@ -259,13 +264,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout12"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toEndOf="@+id/linearLayout10"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
-        app:layout_constraintVertical_bias="0.316">
+        app:layout_constraintVertical_bias="0.124">
 
         <ImageButton
             android:id="@+id/btBuah"
@@ -290,12 +296,13 @@
         android:id="@+id/linearLayout12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
-        app:layout_constraintVertical_bias="0.316">
+        app:layout_constraintVertical_bias="0.14">
 
         <ImageButton
             android:id="@+id/btProduk_rumah_tangga"
@@ -316,78 +323,79 @@
             android:textSize="12dp" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/mainColor"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp">
+    <!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/mainColor"-->
+<!--        android:orientation="vertical"-->
+<!--        android:paddingHorizontal="20dp"-->
+<!--        android:paddingVertical="20dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView5"-->
+<!--        app:layout_constraintVertical_bias="0.408"-->
+<!--        tools:layout_editor_absoluteX="0dp">-->
 
-        <LinearLayout
-            android:background="@drawable/bg_diskon_barang"
-            android:layout_width="134dp"
-            android:layout_height="286dp"
-            android:orientation="vertical"
-            android:padding="10dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="134dp"-->
+<!--            android:layout_height="286dp"-->
+<!--            android:background="@drawable/bg_diskon_barang"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="10dp">-->
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="100dp"
-                android:background="@drawable/makanan_ringan" />
+<!--            <ImageView-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:background="@drawable/makanan_ringan" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Sunlight Sabun Cuci Piring Jeruk Nipis Refill"
-                android:textSize="12dp" />
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/poppins_regular"-->
+<!--                android:text="Sunlight Sabun Cuci Piring Jeruk Nipis Refill"-->
+<!--                android:textSize="12dp" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="1500ml"
-                android:textColor="@color/grey"
-                android:textSize="12dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textSize="10dp"
-                android:layout_marginTop="6dp"
-                android:textColor="@color/white"
-                android:background="@color/mainColor"
-                android:text="- 33%"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/poppins_regular"-->
+<!--                android:text="1500ml"-->
+<!--                android:textColor="@color/grey"-->
+<!--                android:textSize="12dp" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/mainColor"
-                android:text="Rp29,500"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="6dp"-->
+<!--                android:background="@color/mainColor"-->
+<!--                android:padding="4dp"-->
+<!--                android:text="- 33%"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="10dp" />-->
 
-            <Button
-                android:layout_width="84dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:background="@drawable/border_button_green"
-                android:backgroundTint="@color/mainColor"
-                android:fontFamily="@font/poppins_medium"
-                android:text="+ Tambah"
-                android:padding="0dp"
-                android:textColor="@color/black"
-                android:textSize="8dp" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:fontFamily="@font/poppins_semibold"-->
+<!--                android:text="Rp29,500"-->
+<!--                android:textColor="@color/mainColor"-->
+<!--                android:textSize="12dp" />-->
 
-        </LinearLayout>
-    </ScrollView>
+<!--            <Button-->
+<!--                android:layout_width="84dp"-->
+<!--                android:layout_height="22dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/border_button_green"-->
+<!--                android:backgroundTint="@color/mainColor"-->
+<!--                android:fontFamily="@font/poppins_medium"-->
+<!--                android:padding="0dp"-->
+<!--                android:text="+ Tambah"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="8dp" />-->
+
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

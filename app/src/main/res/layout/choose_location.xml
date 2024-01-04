@@ -73,6 +73,7 @@
             </LinearLayout>
 
         <Button
+            android:id="@+id/btKonfirmasi"
             android:layout_width="320dp"
             android:layout_height="50dp"
             android:textSize="20dp"

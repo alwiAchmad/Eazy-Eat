@@ -8,13 +8,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/rounded_border">
+        android:layout_height="46dp"
+        android:padding="10dp"
+        android:background="@color/mainColor"
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/btToDashboard"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/back"/>
@@ -22,19 +24,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="27dp"
+            android:textSize="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginLeft="100dp"
             android:textColor="@color/white"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="132dp"
-            android:text="SUSU"/>
+            android:layout_gravity="center"
+            android:text="Produk Susu dan Telur"/>
 
         <ImageButton
             android:id="@+id/btToCart"
             android:contentDescription="button untuk melihat keranjang"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="120dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="100dp"
+            android:layout_gravity="center"
             android:background="@drawable/cart"/>
 
     </LinearLayout>
@@ -47,19 +50,17 @@
 
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/bg_produk"
             android:layout_marginLeft="20dp">
 
             <ImageView
                 android:id="@+id/imageProduk"
                 android:contentDescription="ini adalah gambar produk"
-                android:layout_width="130dp"
+                android:layout_width="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="120dp"
-                android:layout_marginTop="15dp"/>
+                android:layout_height="120dp"/>
 
             <TextView
                 android:id="@+id/tvNamaProduk"
@@ -67,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="15dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Nama Produk"
                 android:textSize="16dp"
                 android:textStyle="bold" />
@@ -80,18 +81,23 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:text="Rp.0,00"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/btAddToCart"
-                android:layout_width="31dp"
-                android:layout_height="30dp"
-                android:layout_gravity="end"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/bt_cart"
-                android:text="add to cart"/>
+                android:layout_width="84dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_button_green"
+                android:backgroundTint="@color/mainColor"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="0dp"
+                android:text="+ Tambah"
+                android:textColor="@color/black"
+                android:layout_marginBottom="12dp"
+                android:textSize="8dp"/>
 
         </LinearLayout>
 

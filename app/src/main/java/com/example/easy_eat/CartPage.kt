@@ -52,7 +52,14 @@ class CartPage : AppCompatActivity() {
             // Implementasikan logika checkout
         }
 
-        val btBack = findViewById<ImageButton>(R.id.btBack)
+        val Checkout = findViewById<TextView>(R.id.btCheckout)
+
+        Checkout.setOnClickListener {
+            val intent = Intent(this, CheckoutPage::class.java)
+            startActivity(intent)
+        }
+
+        val btBack = findViewById<ImageButton>(R.id.btBackk)
 
         btBack.setOnClickListener {
             val intent = Intent(this, MilkPage::class.java)
