@@ -10,3 +10,6 @@
 
 # Anggota 3 : Tegar Bagus Hartadi_21523102
 - Membuat design antarmuka/ui design pada figma
+
+# Anggota 4 : Daffa Arya Kesuma_21523010
+- Membantu membuat desain antar muka pada figma
